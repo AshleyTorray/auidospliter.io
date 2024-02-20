@@ -1,4 +1,4 @@
-# 🎉 DEMO Audio spliter app
+# 🎉 Audio spliter app
 
 This project is needed for spliting the audio files and removing the noises. Also, This app is made by using the FFMpeg PHP pacakge and Excel libraries. This app implements the funcitons as follow:
 1. access excel log data from iiko.com server
@@ -31,7 +31,8 @@ mysql>ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ''
 mysql>exit
 $ sudo mysql_secure_installation
 ```
-3.  Composer requires php-cli in order to execute PHP scripts in the command line, and unzip to extract zipped archives.         We’ll install these dependencies now.
+3.  Composer requires php-cli in order to execute PHP scripts in the command line, and unzip to extract zipped archives.
+4.  We’ll install these dependencies now.
 
 ```shell
 $ sudo apt install php php-cli php-common php-mbstring php-xml php-zip php-mysql php-pgsql php-sqlite3 php-json php-bcmath php-gd php-tokenizer php-xmlwrite
