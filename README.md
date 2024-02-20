@@ -11,12 +11,25 @@ This project is needed for spliting the audio files and removing the noises. Als
 
 ### 🚀 Setup
 
-- Create Project
+ 1.update apt, install Apache Web Server, allow the Apache in firewell
 
 ```shell
-composer create-project laravel/laravel example-app
+$ sudo apt update
+$ sudo apt install apache2
+$ sudo ufw allow in "Apache"
+$ sudo apt install mysql-server
 ```
-
+2. Traffic on port 80 is now allowed through the firewall. When prompted, confirm installation by typing Y, and then ENTER.
+   First, open up the MySQL prompt:
+```shell
+$ sudo mysql
+```
+Next, you have to configure user authorization in MySql database
+```shell
+mysql>ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ''
+mysql>exit
+$ sudo mysql_secure_installation
+```
 - Install Package
 
 ```shell
