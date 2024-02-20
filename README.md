@@ -51,16 +51,16 @@ $ composer require laravel/breeze --dev
 - Configure Apache and Environment
 
 ```shell
-$ sudo nano /etc/apache2/sites-available/your-project-name.conf
+$ sudo nano /etc/apache2/sites-available/audiospliter.conf
 ```
  Replace your-project-name with the actual name of your project.
 
 Add the following content to the configuration file:
 ```shell
 <VirtualHost *:80>
-    ServerName your-domain-or-ip
-    DocumentRoot /var/www/html/your-project-name/public
-    <Directory /var/www/html/your-project-name>
+    ServerName 109.71.12.115
+    DocumentRoot /var/www/html/audiospliter/public
+    <Directory /var/www/html/audiospliter>
         AllowOverride All
     </Directory>
 </VirtualHost>
@@ -70,17 +70,15 @@ Replace your-domain-or-ip with your actual domain name or server IP address.
 Enable the Apache rewrite module:
 ```shell
 $ sudo a2enmod rewrite
-$ sudo a2ensite your-project-name.conf
+$ sudo a2ensite audiospliter.conf
 $ sudo systemctl restart apache2
 ```
-Replace your-project-name with the actual name of your project.
-
 Add the following content to the server block:
 ```
 server {
     listen 80;
-    server_name your-domain-or-ip;
-    root /var/www/html/your-project-name/public;
+    server_name 109.71.12.115;
+    root /var/www/html/audiospliter/public;
     index index.php;
     location / {
         try_files $uri $uri/ /index.php?$query_string;
@@ -94,10 +92,9 @@ server {
     }
 }
 ```
-Replace your-domain-or-ip with your actual domain name or server IP address.
 Enable the Nginx server block:
 ```shell
-$ sudo ln -s /etc/nginx/sites-available/your-project-name /etc/nginx/sites-enabled/
+$ sudo ln -s /etc/nginx/sites-available/audiospliter /etc/nginx/sites-enabled/
 $ sudo nginx -t
 $ sudo systemctl restart nginx
 ```
@@ -110,11 +107,10 @@ $ php artisan key:generate
 $ php artisan migrate
 $ npm install
 $ npm run dev
-$ sudo chown -R www-data:www-data /var/www/html/your-project-name/storage
-$ sudo chmod -R 775 /var/www/html/your-project-name/storage
+$ sudo chown -R www-data:www-data /var/www/html/audiospliter/storage
+$ sudo chmod -R 775 /var/www/html/audiospliter/storage
 ```
-- install pacakage via composer
-  install composer
+- install composer & install pacakage via composer
 ```shell
 $ composer require
 ```
@@ -125,5 +121,5 @@ $ php artisan serve
 
 ### 🏆 Run
 
-- [http://your-project-name/](your-project-name/) username : `admin` password : `admin`
+- [http://audiospliter/](audiospliter/)
 
