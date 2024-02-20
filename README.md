@@ -1,6 +1,9 @@
-# 🎉 DEMO Laravel Breeze Dark
+# 🎉 DEMO Audio spliter app
 
-Laravel Breeze is a lightweight, minimalistic starter kit for Laravel, providing pre-built authentication scaffolding, views, and controllers to help developers quickly set up user registration, login, and password reset functionality in their Laravel applications.
+This project is needed for spliting the audio files and removing the noises. Also, This app is made by using the FFMpeg PHP pacakge and Excel libraries. This app implements the funcitons as follow:
+1. access excel log data from iiko.com server
+2. on FTP server, analyze the audio files and decrease the noise and split them per each person.
+3. everything runs automatically/manually.
 
 ![version](https://img.shields.io/badge/version-1.0-blue)
 ![rating](https://img.shields.io/badge/rating-★★★★★-yellow)
@@ -35,6 +38,9 @@ php artisan migrate
 npm install
 npm run dev
 ```
+- install pacakage via composer
+```install composer
+
 
 
 
