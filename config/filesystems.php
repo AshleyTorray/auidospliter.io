@@ -61,7 +61,7 @@ return [
             'username' => env('FTP_USERNAME', 'root'),
             'password' => env('FTP_PASSWORD'),
             'port'     => (int) env('FTP_PORT', 21),
-            'root'     => env('FTP_ROOT', ''),
+            'root'     => env('FTP_ROOT', 'audio_new'),
         ],
 
     ],
