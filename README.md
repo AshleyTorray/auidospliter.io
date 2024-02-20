@@ -25,42 +25,104 @@ $ sudo apt install mysql-server
 $ sudo mysql
 ```
 Next, you have to configure user authorization in MySql database
+
 ```shell
 mysql>ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ''
 mysql>exit
 $ sudo mysql_secure_installation
 ```
+3.  Composer requires php-cli in order to execute PHP scripts in the command line, and unzip to extract zipped archives.         We’ll install these dependencies now.
+
+```shell
+$ sudo apt install php php-cli php-common php-mbstring php-xml php-zip php-mysql php-pgsql php-sqlite3 php-json php-bcmath php-gd php-tokenizer php-xmlwrite
+$sudo apt update
+```
+
+First, update the package manager cache by running:
 - Install Package
 
 ```shell
-composer require laravel/breeze --dev
+$ sudo apt install curl php-cli php-mbstring git unzip
+$ curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=compose
+$ composer require laravel/breeze --dev
 ```
 
-- Configure Environment
+- Configure Apache and Environment
 
 ```shell
-cp .env.example .env
+$ sudo nano /etc/apache2/sites-available/your-project-name.conf
 ```
+ Replace your-project-name with the actual name of your project.
 
+Add the following content to the configuration file:
+```shell
+<VirtualHost *:80>
+    ServerName your-domain-or-ip
+    DocumentRoot /var/www/html/your-project-name/public
+    <Directory /var/www/html/your-project-name>
+        AllowOverride All
+    </Directory>
+</VirtualHost>
+```
+Replace your-domain-or-ip with your actual domain name or server IP address.
+
+Enable the Apache rewrite module:
+```shell
+$ sudo a2enmod rewrite
+$ sudo a2ensite your-project-name.conf
+$ sudo systemctl restart apache2
+```
+Replace your-project-name with the actual name of your project.
+
+Add the following content to the server block:
+```
+server {
+    listen 80;
+    server_name your-domain-or-ip;
+    root /var/www/html/your-project-name/public;
+    index index.php;
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+    }
+    location ~ /\.ht {
+        deny all;
+    }
+}
+```
+Replace your-domain-or-ip with your actual domain name or server IP address.
+Enable the Nginx server block:
+```shell
+$ sudo ln -s /etc/nginx/sites-available/your-project-name /etc/nginx/sites-enabled/
+$ sudo nginx -t
+$ sudo systemctl restart nginx
+```
 - Migrate
 
 ```
-php artisan breeze:install --dark
- 
-php artisan migrate
-npm install
-npm run dev
+$ cp .env.example .env
+$ php artisan breeze:install --dark
+$ php artisan key:generate
+$ php artisan migrate
+$ npm install
+$ npm run dev
+$ sudo chown -R www-data:www-data /var/www/html/your-project-name/storage
+$ sudo chmod -R 775 /var/www/html/your-project-name/storage
 ```
 - install pacakage via composer
-```install composer
-
-
-
+  install composer
+```shell
+$ composer require
+```
+- move the audio_new, excellog directories to root of project
+```shell
+$ php artisan serve
+```
 
 ### 🏆 Run
 
-- [http://localhost:8000/](http://localhost:8000/) username : `admin` password : `admin`
+- [http://your-project-name/](your-project-name/) username : `admin` password : `admin`
 
-```shell
-php artisan serve
-```
